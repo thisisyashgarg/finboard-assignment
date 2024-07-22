@@ -120,7 +120,7 @@ const ReportPage = () => {
                 <label className="font-medium">Accounting Method</label>
                 <div className="flex justify-between h-full rounded-lg items-center">
                   <div
-                    className={`flex items-center  gap-4 pl-4 h-full rounded-lg rounded-r-none basis-1/2 cursor-pointer ${
+                    className={`flex items-center  gap-4 px-4 h-full rounded-lg rounded-r-none basis-1/2 cursor-pointer ${
                       formData?.accountingMethod === "accrual"
                         ? "bg-blue-50 text-blue-700 border-2 border-blue-100"
                         : "text-gray-600"
@@ -146,7 +146,7 @@ const ReportPage = () => {
                     </label>
                   </div>
                   <div
-                    className={`flex items-center rounded-lg rounded-l-none gap-4 pl-4 h-full basis-1/2 cursor-pointer ${
+                    className={`flex items-center rounded-lg rounded-l-none gap-4 px-4 h-full basis-1/2 cursor-pointer ${
                       formData?.accountingMethod === "cash"
                         ? "bg-blue-50 text-blue-700 border-2 border-blue-100"
                         : "text-gray-600"
