@@ -12,15 +12,17 @@ const CustomButton = ({
   variant?: "DEFAULT" | "OUTLINE"
 } & ComponentProps<"button">) => {
   const conditionalStyles = {
-    DEFAULT: "bg-blue-700 text-white p-4 text-lg",
-    OUTLINE: "bg-white text-black py-2 px-4 border-2 border-gray-200",
+    DEFAULT: "bg-blue-700 hover:bg-blue-800 text-white p-4 text-lg",
+    OUTLINE:
+      "bg-white hover:bg-gray-100 text-black py-2 px-4 border-2 border-gray-200 hover:border-gray-300",
   }
+
   return (
     <button
       {...props}
-      className={`rounded-lg items-center text- ${
+      className={`rounded-lg items-center ${
         conditionalStyles[variant]
-      } ${className} ${iconLeft && "flex gap-2"}`}
+      } ${className} ${iconLeft ? "flex gap-2" : ""}`}
     >
       {iconLeft}
       {text}

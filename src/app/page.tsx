@@ -58,10 +58,10 @@ const ReportPage = () => {
             {MAIN_NAVIGATION.map((nav) => (
               <button
                 key={nav.id}
-                className={`p-3 flex gap-2 ${
+                className={`p-3 flex gap-2 transition-colors duration-300 ease-in-out ${
                   mainNavigation === nav.id
-                    ? "border-b-4 border-blue-700 text-blue-700 font-medium"
-                    : "bg-white text-gray-500"
+                    ? "border-b-4 border-blue-700 text-blue-700"
+                    : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                 }`}
                 onClick={() => setMainNavigation(nav.id as any)}
               >
@@ -75,12 +75,12 @@ const ReportPage = () => {
             {SECONDARY_NAVIGATION.map((nav) => (
               <button
                 key={nav.id}
-                className={`p-3 flex  items-center gap-2 rounded-lg ${
+                className={`p-3 flex items-center gap-2 rounded-lg transition-colors duration-300 ease-in-out ${
                   secondaryNavigation === nav.id
-                    ? "bg-blue-50 text-blue-700 font-medium"
-                    : "bg-white text-gray-500"
+                    ? "bg-blue-50 text-blue-700"
+                    : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                 }`}
-                onClick={() => setSecondaryNavigation(nav.id as any)}
+                onClick={() => setSecondaryNavigation(nav.id)}
               >
                 {nav.icon}
                 {nav.label}
@@ -120,10 +120,10 @@ const ReportPage = () => {
                 <label className="font-medium">Accounting Method</label>
                 <div className="flex justify-between h-full rounded-lg items-center">
                   <div
-                    className={`flex items-center  gap-4 px-4 h-full rounded-lg rounded-r-none basis-1/2 cursor-pointer ${
+                    className={`flex items-center transition-colors duration-300 ease-in-out gap-4 px-4 h-full rounded-lg rounded-r-none basis-1/2 cursor-pointer ${
                       formData?.accountingMethod === "accrual"
                         ? "bg-blue-50 text-blue-700 border-2 border-blue-100"
-                        : "text-gray-600"
+                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-700"
                     }`}
                   >
                     <input
@@ -146,10 +146,10 @@ const ReportPage = () => {
                     </label>
                   </div>
                   <div
-                    className={`flex items-center rounded-lg rounded-l-none gap-4 px-4 h-full basis-1/2 cursor-pointer ${
+                    className={`flex items-center rounded-lg transition-colors duration-300 ease-in-out rounded-l-none gap-4 px-4 h-full basis-1/2 cursor-pointer ${
                       formData?.accountingMethod === "cash"
                         ? "bg-blue-50 text-blue-700 border-2 border-blue-100"
-                        : "text-gray-600"
+                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-700"
                     }`}
                   >
                     <input
@@ -205,11 +205,11 @@ const ReportPage = () => {
         <section className="relative flex justify-center items-center">
           <div className="absolute inset-x-0 top-1/2 border-t-2 "></div>
           <div className="relative z-10 flex font-medium text-gray-600 border-2 text-sm rounded-full bg-white">
-            <button className="px-3 py-1">Advanced settings</button>
-            <button className="border-x-2 px-3 py-1">Formatting</button>
-            <button className="px-3 py-1">
+            <p className="px-3 py-1">Advanced settings</p>
+            <p className="border-x-2 px-3 py-1">Formatting</p>
+            <p className="px-3 py-1">
               Filters <span className="text-gray-400">0/5</span>
-            </button>
+            </p>
           </div>
         </section>
 
@@ -219,7 +219,7 @@ const ReportPage = () => {
 
             <div>
               <h2 className="text-gray-400">Sheet name</h2>
-              <p className="font-semibold cursor-pointer flex items-center text-blue-700">
+              <p className="font-semibold cursor-pointer hover:underline flex items-center text-blue-700">
                 Profit and loss (2) <FilePenLine height={15} />
               </p>
             </div>
