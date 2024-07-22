@@ -57,6 +57,7 @@ const ReportPage = () => {
             </button>
             {MAIN_NAVIGATION.map((nav) => (
               <button
+                key={nav.id}
                 className={`p-3 flex gap-2 ${
                   mainNavigation === nav.id
                     ? "border-b-4 border-blue-700 text-blue-700 font-medium"
@@ -73,6 +74,7 @@ const ReportPage = () => {
           <div className="flex gap-4">
             {SECONDARY_NAVIGATION.map((nav) => (
               <button
+                key={nav.id}
                 className={`p-3 flex  items-center gap-2 rounded-lg ${
                   secondaryNavigation === nav.id
                     ? "bg-blue-50 text-blue-700 font-medium"
@@ -102,8 +104,8 @@ const ReportPage = () => {
             <p className="bg-yellow-50 flex items-center gap-1 text-sm text-brown-900 p-2 rounded-lg">
               <TriangleAlert height={20} />
               <strong> Heads up! </strong>
-              You're about to add a report for Demo Company to a spreadsheet
-              already containing reports for 33
+              You&apos;re about to add a report for Demo Company to a
+              spreadsheet already containing reports for 33
             </p>
           </section>
 

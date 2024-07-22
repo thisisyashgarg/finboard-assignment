@@ -11,8 +11,8 @@ const CustomSelect = ({
       {...props}
       className={`p-2 border-2 border-gray-200 rounded-lg ${className}`}
     >
-      {options.map((option) => (
-        <option>{option}</option>
+      {options.map((option, index) => (
+        <option key={index}>{option}</option>
       ))}
     </select>
   )
