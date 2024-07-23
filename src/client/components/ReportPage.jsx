@@ -1,40 +1,138 @@
-"use client"
-
 import { useState } from "react"
 import {
   ChevronsUpDown,
   FilePlus,
-  X,
   TriangleAlert,
   CircleX,
   FilePenLine,
   MessageCircle,
   Minimize2,
+  RefreshCcw,
+  Search,
+  Lightbulb,
+  LayoutPanelTop,
+  Newspaper,
+  File,
 } from "lucide-react"
-import { MainNavigation, SecondaryNavigation } from "@/lib/types"
-import CustomButton from "@/components/ui/button"
-import CustomSelect from "@/components/ui/select"
-import { MAIN_NAVIGATION, SECONDARY_NAVIGATION } from "@/lib/constants"
+import PFP from "../images/pfp.jpeg"
+import YTLogo from "../images/youtube-logo.png"
+
+const MainNavigation = {
+  CREATE_REPORT: "CREATE_REPORT",
+  MANAGE_REPORT: "MANAGE_REPORT",
+  DRILL_DOWN: "DRILL_DOWN",
+  CONSOLIDATION: "CONSOLIDATION",
+}
+
+const SecondaryNavigation = {
+  START_FROM_SCRATCH: "START_FROM_SCRATCH",
+  START_FROM_TEMPLATE: "START_FROM_TEMPLATE",
+  IMPORT_FROM_SPREADSHEET: "IMPORT_FROM_SPREADSHEET",
+  CREATE_CONSOLIDATED_REPORT: "CREATE_CONSOLIDATED_REPORT",
+}
+
+const MAIN_NAVIGATION = [
+  {
+    label: "Create Report",
+    id: "CREATE_REPORT",
+    icon: <FilePlus />,
+  },
+  {
+    label: "Manage Report",
+    id: "MANAGE_REPORT",
+    icon: <RefreshCcw />,
+  },
+  {
+    label: "Drill Down",
+    id: "DRILL_DOWN",
+    icon: <Search />,
+  },
+  {
+    label: "Consolidation",
+    id: "CONSOLIDATION",
+    icon: <Lightbulb />,
+  },
+]
+
+const SECONDARY_NAVIGATION = [
+  {
+    label: "Start from scratch",
+    id: "START_FROM_SCRATCH",
+    icon: <File />,
+  },
+  {
+    label: "Start from a template",
+    id: "START_FROM_TEMPLATE",
+    icon: <LayoutPanelTop />,
+  },
+  {
+    label: "Import from spreadsheet",
+    id: "IMPORT_FROM_SPREADSHEET",
+    icon: <Newspaper />,
+  },
+  {
+    label: "Create consolidated report",
+    id: "CREATE_CONSOLIDATED_REPORT",
+    icon: <Lightbulb />,
+  },
+]
+
+const CustomButton = ({
+  text,
+  variant = "DEFAULT",
+  className,
+  iconLeft,
+  ...props
+}) => {
+  const conditionalStyles = {
+    DEFAULT: "bg-blue-700 hover:bg-blue-800 text-white p-4 text-lg",
+    OUTLINE:
+      "bg-white hover:bg-gray-100 text-black py-2 px-4 border-2 border-gray-200 hover:border-gray-300",
+  }
+
+  return (
+    <button
+      {...props}
+      className={`rounded-lg items-center ${
+        conditionalStyles[variant]
+      } ${className} ${iconLeft ? "flex gap-2" : ""}`}
+    >
+      {iconLeft}
+      {text}
+    </button>
+  )
+}
+
+// TODO: we have to pass ref for form submission, skipped for now, passing only necessary props for ui
+const CustomSelect = ({ options, className, ...props }) => {
+  return (
+    <select
+      {...props}
+      className={`p-2 border-2 border-gray-200 rounded-lg ${className}`}
+    >
+      {options.map((option, index) => (
+        <option key={index}>{option}</option>
+      ))}
+    </select>
+  )
+}
 
 const ReportPage = () => {
-  const [mainNavigation, setMainNavigation] =
-    useState<keyof typeof MainNavigation>("CREATE_REPORT")
+  const [mainNavigation, setMainNavigation] = useState("CREATE_REPORT")
   const [secondaryNavigation, setSecondaryNavigation] =
-    useState<keyof typeof SecondaryNavigation>("START_FROM_SCRATCH")
-  const [formData, setFormData] = useState<{
-    accountingMethod: "accrual" | "cash"
-  }>({
+    useState("START_FROM_SCRATCH")
+  const [formData, setFormData] = useState({
     // TODO: more fields to be added, skipped for now
     accountingMethod: "accrual",
   })
 
   return (
     <>
-      <div className="space-y-6 lg:block hidden border-2 rounded-lg shadow-md m-10 p-6 pb-8">
-        <header className="flex justify-between">
+      <div className="space-y-6">
+        {/* <header className="flex justify-between">
           <h1 className="text-2xl cursor-pointer font-medium">FinBoard</h1>
           <X className="cursor-pointer" />
-        </header>
+        </header> */}
 
         <section className="space-y-4">
           <div className="text-center items-center flex justify-between w-full text-brown-900 bg-yellow-50 p-1 rounded-lg ">
@@ -52,7 +150,7 @@ const ReportPage = () => {
 
           <nav className="flex border-b-2">
             <button className="p-3 flex items-center gap-2 text-gray-500 ">
-              <img src="/pfp.jpeg" alt="pfp" className="w-8 h-8 rounded-full" />
+              <img src={PFP} alt="pfp" className="w-8 h-8 rounded-full" />
               Ujjwal Singh <ChevronsUpDown />
             </button>
             {MAIN_NAVIGATION.map((nav) => (
@@ -63,7 +161,7 @@ const ReportPage = () => {
                     ? "border-b-4 border-blue-700 text-blue-700"
                     : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                 }`}
-                onClick={() => setMainNavigation(nav.id as any)}
+                onClick={() => setMainNavigation(nav.id)}
               >
                 {nav.icon}
                 {nav.label}
@@ -132,7 +230,7 @@ const ReportPage = () => {
                         console.log(e.target.value, "e.target.value")
                         setFormData({
                           ...formData,
-                          accountingMethod: e.target.value as any,
+                          accountingMethod: e.target.value,
                         })
                       }}
                       className="cursor-pointer"
@@ -157,7 +255,7 @@ const ReportPage = () => {
                         console.log(e.target.value, "e.target.value")
                         setFormData({
                           ...formData,
-                          accountingMethod: e.target.value as any,
+                          accountingMethod: e.target.value,
                         })
                       }}
                       className="cursor-pointer"
@@ -174,8 +272,7 @@ const ReportPage = () => {
               </div>
             </div>
             <p className="p-2 text-gray-600 flex gap-1 items-center text-sm bg-gray-50 rounded-lg">
-              <img src="/youtube-logo.png" className="w-5 h-5" alt="yt-logo" />
-              {/* <Youtube size={30} fill="#EF4243" stroke="none" /> */}
+              <img src={YTLogo} className="w-5 h-5" alt="yt-logo" />
               <strong> 1:32 </strong>
               You can insert rows and columns directly inside your report.{" "}
               <span className="flex cursor-pointer underline items-center">
@@ -231,9 +328,9 @@ const ReportPage = () => {
         </footer>
       </div>
 
-      <h1 className="lg:hidden text-center px-4 text-3xl flex h-screen items-center justify-center">
+      {/* <h1 className="lg:hidden text-center px-4 text-3xl flex h-screen items-center justify-center">
         Switch to desktop mode to view this page
-      </h1>
+      </h1> */}
     </>
   )
 }
