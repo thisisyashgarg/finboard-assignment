@@ -8,7 +8,7 @@ import { viteSingleFile } from "vite-plugin-singlefile"
 import { writeFile } from "fs/promises"
 
 const PORT = 8888
-const clientRoot = "./src/client"
+const clientRoot = "./src"
 const outDir = "./dist"
 const serverEntry = "src/server/index.ts"
 const copyAppscriptEntry = "./appsscript.json"
@@ -17,8 +17,8 @@ const devServerWrapper = "./dev/dev-server-wrapper.html"
 const clientEntrypoints = [
   {
     name: "CLIENT - Dialog Demo",
-    filename: "report-page", // we'll add the .html suffix to these
-    template: "report-page/index.html",
+    filename: "client", // we'll add the .html suffix to these
+    template: "client/index.html",
   },
 ]
 

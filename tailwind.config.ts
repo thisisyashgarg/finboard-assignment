@@ -1,10 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
-  content: [
-    "./src/client/report-page/index.html",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/client/index.html", "./src/**/*.{js,ts,jsx,tsx,mdx,html}"],
   theme: {
     extend: {
       colors: {

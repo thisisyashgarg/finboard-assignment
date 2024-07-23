@@ -1,16 +1,21 @@
-"use client"
 import { useState } from "react"
 import {
   ChevronsUpDown,
   FilePlus,
-  X,
   TriangleAlert,
   CircleX,
   FilePenLine,
   MessageCircle,
   Minimize2,
+  RefreshCcw,
+  Search,
+  Lightbulb,
+  LayoutPanelTop,
+  Newspaper,
+  File,
 } from "lucide-react"
-import "./index.css"
+import PFP from "../images/pfp.jpeg"
+import YTLogo from "../images/youtube-logo.png"
 
 const MainNavigation = {
   CREATE_REPORT: "CREATE_REPORT",
@@ -124,10 +129,10 @@ const ReportPage = () => {
   return (
     <>
       <div className="space-y-6">
-        <header className="flex justify-between">
+        {/* <header className="flex justify-between">
           <h1 className="text-2xl cursor-pointer font-medium">FinBoard</h1>
           <X className="cursor-pointer" />
-        </header>
+        </header> */}
 
         <section className="space-y-4">
           <div className="text-center items-center flex justify-between w-full text-brown-900 bg-yellow-50 p-1 rounded-lg ">
@@ -145,7 +150,7 @@ const ReportPage = () => {
 
           <nav className="flex border-b-2">
             <button className="p-3 flex items-center gap-2 text-gray-500 ">
-              <img src="/pfp.png" alt="pfp" className="w-8 h-8 rounded-full" />
+              <img src={PFP} alt="pfp" className="w-8 h-8 rounded-full" />
               Ujjwal Singh <ChevronsUpDown />
             </button>
             {MAIN_NAVIGATION.map((nav) => (
@@ -267,7 +272,7 @@ const ReportPage = () => {
               </div>
             </div>
             <p className="p-2 text-gray-600 flex gap-1 items-center text-sm bg-gray-50 rounded-lg">
-              <img src="/youtube-logo.png" className="w-5 h-5" alt="yt-logo" />
+              <img src={YTLogo} className="w-5 h-5" alt="yt-logo" />
               <strong> 1:32 </strong>
               You can insert rows and columns directly inside your report.{" "}
               <span className="flex cursor-pointer underline items-center">
